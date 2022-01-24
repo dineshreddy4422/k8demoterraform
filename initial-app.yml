@@ -1,0 +1,26 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: hello-njs
+  labels:
+    app: hello-njs
+    role: backend
+    stage: test
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hello-njs
+      version: v0.0.1
+  template:
+    metadata:
+      labels:
+        app: hello-njs
+        version: v0.0.1
+    spec:
+      containers:
+        - name: hello-njs
+          image: xxxxxxxxxxx.dkr.ecr.us-east-1.amazonaws.com/hello-njs:f347df06afd1239dd24050a571f10a41b1301f06
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
